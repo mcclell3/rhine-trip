@@ -747,6 +747,8 @@
     if (role === "Cruise") return "cruise";
     if (role === "Rental") return "rental";
     if (role === "Cafe") return "cafe";
+    if (role === "Lunch") return "lunch";
+    if (role === "Dinner") return "dinner";
     return "station";
   }
 
