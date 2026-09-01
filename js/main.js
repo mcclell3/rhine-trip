@@ -367,8 +367,8 @@
       gmaps: mapsUrl(50.0490, 8.5718, 16)
     },
     paulaner: {
-      lat: 50.1106, lng: 8.6853, name: "Paulaner am Dom Hotel", role: "Stay", icon: "bed",
-      gmaps: mapsUrl(50.1106, 8.6853, 18)
+      lat: 50.1100, lng: 8.6824, name: "Motel One Frankfurt-Römer", role: "Stay", icon: "bed",
+      gmaps: mapsUrl(50.1100, 8.6824, 18)
     },
     kleinmarkt: {
       lat: 50.1134, lng: 8.6836, name: "Kleinmarkthalle", role: "Cafe", icon: "lunch",
