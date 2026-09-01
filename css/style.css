@@ -765,6 +765,43 @@ button, a { -webkit-tap-highlight-color: transparent; }
   width: 100%;
   box-sizing: border-box;
 }
+.leg-step {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.7rem 0.5rem;
+  border-bottom: 1px solid rgba(176, 137, 79, 0.28);
+  background: rgba(255, 253, 249, 0.92);
+}
+.leg-step-status {
+  flex: 1;
+  text-align: center;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.leg-step-back,
+.leg-step-next {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.38rem 0.85rem;
+  cursor: pointer;
+  border: 1px solid var(--oxblood);
+  background: var(--ivory);
+  color: var(--oxblood);
+}
+.leg-step-next {
+  background: var(--oxblood);
+  color: var(--ivory);
+}
+.leg-step-back:hover,
+.leg-step-next:hover {
+  filter: brightness(1.08);
+}
 .leg-row {
   display: grid;
   grid-template-columns: auto auto auto minmax(0, 1fr) auto;

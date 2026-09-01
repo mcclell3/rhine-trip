@@ -1301,6 +1301,8 @@
       return dayBody || el;
     }
 
+    var stepStatus = null;
+
     function markActive(row) {
       var rows = el.querySelectorAll(".leg-row");
       var idx = -1;
@@ -1312,6 +1314,52 @@
       beats.forEach(function (b, i) {
         b.classList.toggle("is-active", i === idx);
       });
+      if (stepStatus) {
+        stepStatus.textContent = idx < 0 ? "Next step" : (idx + 1) + " / " + rows.length;
+      }
+    }
+
+    function addStepper() {
+      var rows = el.querySelectorAll(".leg-row");
+      if (!rows.length) return;
+      var bar = document.createElement("div");
+      bar.className = "leg-step";
+      bar.innerHTML =
+        '<button type="button" class="leg-step-back">Back</button>' +
+        '<span class="leg-step-status">Next step</span>' +
+        '<button type="button" class="leg-step-next">Next</button>';
+      var back = bar.querySelector(".leg-step-back");
+      var next = bar.querySelector(".leg-step-next");
+      stepStatus = bar.querySelector(".leg-step-status");
+      function currentIndex() {
+        var i = -1;
+        rows.forEach(function (r, n) {
+          if (r.classList.contains("is-active")) i = n;
+        });
+        return i;
+      }
+      function go(delta) {
+        var i = currentIndex();
+        if (i < 0) i = delta > 0 ? 0 : rows.length - 1;
+        else i += delta;
+        if (i < 0) i = rows.length - 1;
+        if (i >= rows.length) i = 0;
+        rows[i].click();
+        if (rows[i].scrollIntoView) {
+          rows[i].scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+        }
+      }
+      back.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        go(-1);
+      });
+      next.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        go(1);
+      });
+      el.insertBefore(bar, el.firstChild);
     }
 
     var gallery = ctx.gallery || galleryForTimes(el);
@@ -1404,6 +1452,7 @@
         }, "Show " + (item.label || item.clock) + " on the map");
       });
       decorateGallery(gallery, schedule);
+      addStepper();
       pinCopyHeights();
       if (ctx.day) {
         var beatItems = ctx.day.querySelectorAll(".day-beats > li");
@@ -1436,6 +1485,7 @@
         applyFocusOpacities(ctx, id);
       }, "Show " + (path.label || id) + " on the map");
     });
+    addStepper();
   }
 
   function paintMap(map, ctx, placeKeys, pathIds, maxZoom) {
