@@ -1310,6 +1310,7 @@
         r.classList.toggle("is-active", r === row);
         if (r === row) idx = i;
       });
+      el.classList.toggle("is-focused", idx >= 0);
       var beats = ctx.day ? ctx.day.querySelectorAll(".day-beats > li") : [];
       beats.forEach(function (b, i) {
         b.classList.toggle("is-active", i === idx);
@@ -1394,6 +1395,7 @@
       var st = PATH_STYLE[styleMode] || PATH_STYLE.car;
       var row = document.createElement("div");
       row.className = "leg-row";
+      row.style.setProperty("--row-color", color);
       row.setAttribute("role", "button");
       row.setAttribute("tabindex", "0");
       row.setAttribute("aria-label", aria);
