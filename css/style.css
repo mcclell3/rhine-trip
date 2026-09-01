@@ -1013,6 +1013,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .log-board .leg-day-head { margin: 0; padding-left: 0.75rem; }
 .log-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   font-family: var(--sans);
   font-size: 0.8rem;
@@ -1022,6 +1023,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border-left: 2px solid rgba(110, 29, 42, 0.28);
   background: rgba(255, 253, 249, 0.55);
 }
+.log-table col { width: calc(100% / 6); }
 .log-table thead th {
   font-size: 0.62rem;
   font-weight: 600;
@@ -1042,13 +1044,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border-bottom: 1px solid rgba(176, 137, 79, 0.18);
 }
 .log-table tbody tr:last-child td { border-bottom-color: transparent; }
-.log-table td:first-child { width: 11.5rem; white-space: nowrap; }
-.log-table th:nth-child(4),
-.log-table td:nth-child(4) { width: 12%; }
-.log-table th:nth-child(5),
-.log-table td:nth-child(5) { width: 9%; }
-.log-table th:nth-child(6),
-.log-table td:nth-child(6) { width: 12%; }
+.log-table th,
+.log-table td {
+  width: calc(100% / 6);
+  overflow-wrap: anywhere;
+}
 .log-time {
   display: block;
   font-weight: 600;
@@ -1082,7 +1082,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .log-book {
   white-space: normal;
-  min-width: 8.4rem;
 }
 .log-book a,
 .log-booked {
@@ -1143,10 +1142,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 719px) {
   .log-board { overflow-x: auto; }
   .log-table { min-width: 44rem; }
-  .log-table td:first-child {
-    white-space: normal;
-    width: 8.5rem;
-  }
 }
 
 /* Footer */
